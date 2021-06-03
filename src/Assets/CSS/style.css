@@ -1,0 +1,38 @@
+* {
+  color: rgb(39, 39, 39);
+}
+.customPanel {
+  width: calc(50% - 200px);
+  padding: 20px;
+  border-bottom: 1px solid #f4f4f4;
+}
+.panelItem {
+  width: 100%;
+  padding: 15px 20px;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
+    'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  color: #444;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid rgb(180, 180, 180);
+  transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.panelItem:last-child {
+  border: none;
+}
+.panelItem div {
+  margin: 10px;
+}
+.panelItem div:last-child {
+  text-align: left;
+}
+.panelItem div input[type='checkbox'] {
+  width: 15px;
+  height: 15px;
+}
+.panelItem div h3 {
+  font-weight: bold;
+}
+.panelItem div p {
+  color: #7b7b7b;
+}
