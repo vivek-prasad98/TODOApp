@@ -1,31 +1,44 @@
 import './../Assets/CSS/App.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {faCheck,faTrash } from '@fortawesome/free-solid-svg-icons'
+import { faCheck, faTrash } from '@fortawesome/free-solid-svg-icons'
 
-function todosLeft(){
-  if(localStorage.length < 1)
-    return 'No';
-  let count = 0;
-  for(let ele of JSON.parse(localStorage.getItem('Active'))){
-    if(!ele.Comp)
-      count += 1;
+function todosLeft () {
+  if (localStorage.length < 1) return 'No'
+  let count = 0
+  for (let ele of JSON.parse(localStorage.getItem('Active'))) {
+    if (!ele.Comp) count += 1
   }
-  return count;
+  return count
 }
 
-export default function Footer(props){
-    return (
-        <div className='panel-heading panel-footer'>
-          <div className='left'>
-            <FontAwesomeIcon icon={faTrash} style={{ margin: '0px 10px' }} onClick={props.handlers[0]} />|
-            <FontAwesomeIcon icon={faCheck} style={{ margin: '0px 10px' }} onClick={props.handlers[1]} /> |{' '}
-            <span> {todosLeft()} Todo Left</span>
-          </div>
-          <div className='right'>
-            <button className='customBtn' onClick={props.handlers[2]}>All</button>
-            <button className='customBtn' onClick={props.handlers[3]}>Active</button>
-            <button className='customBtn' onClick={props.handlers[4]}>Completed</button>
-          </div>
-        </div>
-    );
+export default function Footer (props) {
+  return (
+    <div className='panel-heading panel-footer'>
+      <div className='left'>
+        <FontAwesomeIcon
+          icon={faTrash}
+          style={{ margin: '0px 10px', cursor: 'pointer' }}
+          onClick={props.handlers[0]}
+        />
+        |
+        <FontAwesomeIcon
+          icon={faCheck}
+          style={{ margin: '0px 10px', cursor: 'pointer' }}
+          onClick={props.handlers[1]}
+        />{' '}
+        | <span> {todosLeft()} Todo Left</span>
+      </div>
+      <div className='right'>
+        <button className='customBtn' onClick={props.handlers[2]}>
+          All
+        </button>
+        <button className='customBtn' onClick={props.handlers[3]}>
+          Active
+        </button>
+        <button className='customBtn' onClick={props.handlers[4]}>
+          Completed
+        </button>
+      </div>
+    </div>
+  )
 }
