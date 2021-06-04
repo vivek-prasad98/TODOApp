@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faCheck,faTrash } from '@fortawesome/free-solid-svg-icons'
 
 function todosLeft(){
-  if(localStorage.getItem('Active').length < 1)
+  if(localStorage.length < 1)
     return 'No';
   let count = 0;
   for(let ele of JSON.parse(localStorage.getItem('Active'))){
