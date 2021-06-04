@@ -38,6 +38,7 @@ section {
 }
 .left span {
   margin: 0 10px;
+  white-space: nowrap;
 }
 .right {
   text-align: right;

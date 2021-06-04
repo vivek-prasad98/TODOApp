@@ -65,13 +65,72 @@ function App () {
     }
   }
 
-  function handleShow(){
-    console.log("Handle Show !!!!");
+  function handleDelete(e){
+    let Alldata = JSON.parse(localStorage.getItem('Active'));
+    JSON.parse(localStorage.getItem('Active')).forEach((element,index) => {
+      if(element.Comp)
+       {
+        Alldata.splice(index,1);
+       }
+    });
+    // console.log(Alldata);
+    localStorage.setItem('Active',JSON.stringify(Alldata));
+    updateData(JSON.parse(localStorage.getItem('Active')));
   }
-  
-  function handleCheck(){
-    console.log("Handle Show !!!!");
+
+  function handleSave(){
+    console.log("Handle Save !!!!");
+    updateData(JSON.parse(localStorage.getItem('Active')));
   }
+
+  function handleCheck(e){
+    let Alldata = JSON.parse(localStorage.getItem('Active'));
+    let index = Alldata.findIndex((data) => {
+      if(e.target.id === data.id)
+        return true;
+      return false;
+    });
+    if(e.target.checked)
+      Alldata[index].Comp = true;
+    else
+      Alldata[index].Comp =false;
+    localStorage.setItem('Active',JSON.stringify(Alldata));
+    updateData(JSON.parse(localStorage.getItem('Active')));
+  }
+
+// Helps to show the todos though they are either completed or still active
+
+function handleAll(){
+  console.log("handle All");
+  updateData(JSON.parse(localStorage.getItem('Active')));
+}
+
+function handleActive(){
+  console.log("handle Active");
+  let Alldata = [];
+  JSON.parse(localStorage.getItem('Active')).forEach((element) => {
+    if(!element.Comp)
+     {
+      Alldata.push(element);
+     }
+  });
+  updateData(Alldata);
+}
+
+function handleCompleted(){
+  console.log("handle Completed !");
+  let Alldata = [];
+  JSON.parse(localStorage.getItem('Active')).forEach((element) => {
+    if(element.Comp)
+     {
+      Alldata.push(element);
+     }
+  });
+  // localStorage.setItem('Active',JSON.stringify(Alldata));
+  updateData(Alldata);
+}
+
+const handlers = [handleDelete, handleSave, handleAll, handleActive, handleCompleted];
 
 
 
@@ -91,7 +150,7 @@ function App () {
         </div>
         
         <MyTodo data={data} handleCheck={handleCheck}/>
-        <Footer handleShow/>
+        <Footer handlers = {handlers}/>
         
       </section>
     </div>
